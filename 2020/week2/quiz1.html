@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>약수구하기</title>
+</head>
+
+<body>
+  <p class="url"><a href="https://level.goorm.io/exam/43255/%EC%95%BD%EC%88%98-%EA%B5%AC%ED%95%98%EA%B8%B0/quiz/1" target="_blank">약수구하기</a></p>
+  <script>
+    let result = new Array();
+    function(line) {
+      //let inputNumber = Number(line);
+      //console.log(typeof inputNumber);
+      for (var i = 1; i < line + 1; i++) {
+        let num1 = line / i;
+        //console.log(typeof num1);
+        if (num1 % 1 == 0) {
+          result.unshift(num1);
+        }
+      }
+      //console.log(result.toString().replace(/,/g,' ')+' ');
+      console.log(result.join(' ') + ' ');
+    }
+  </script>
+</body>
+
+</html>

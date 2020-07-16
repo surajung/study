@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>세로-순서-사각형</title>
+</head>
+
+<body>
+  <script>
+    var line = 4;
+    var num = 1,
+      result = new Array(line);
+    for (var i = 0; i < result.length; i++) {
+      result[i] = new Array(line);
+    }
+    for (var j = 0; j < result.length; j++) {
+      for (let k = 0; k < result.length; k++) {
+        result[k][j] = Number(num);
+        num++;
+      }
+    }
+    for (var i = 0; i < result.length; i++) {
+      console.log(result[i].join(' '));
+    }
+  </script>
+</body>
+
+</html>

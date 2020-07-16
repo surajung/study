@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>전기요금</title>
+</head>
+
+<body>
+  <p class="url"><a href="https://level.goorm.io/exam/43268/%EC%A0%84%EA%B8%B0%EC%9A%94%EA%B8%88/quiz/1" target="_blank">전기요금</a></p>
+  <script>
+    function(line) {
+        // if (line <= 0) {console.log(0);rl.close();}
+        if (line < 100 || line < 0) {
+          line = line * 0.005;
+        } else if (line < 200) {
+          line = line * 0.007;
+        } else if (line < 300) {
+          line = line * 0.009;
+        } else {
+          line = line * 0.01;
+        }
+        console.log(line.toFixed(2));
+      }
+  </script>
+</body>
+
+</html>
