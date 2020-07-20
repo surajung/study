@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>전기요금</title>
+</head>
+
+<body>
+  <p class="url">구름URL : <a href="https://level.goorm.io/exam/43268/%EC%A0%84%EA%B8%B0%EC%9A%94%EA%B8%88/quiz/1" target="_blank">전기요금</a></p>
+  <input type="text" name="number" id="number" value="">
+  <!-- <button type="button" onclick="cal()">ok</button> -->
+  <p id="result"></p>
+  <script>
+    function cal() {
+      let line = document.getElementById("number").value;
+      let result;
+      // if (line <= 0) {console.log(0);rl.close();}
+      if (line < 100 || line < 0) {
+        line = line * 0.005;
+      } else if (line < 200) {
+        line = line * 0.007;
+      } else if (line < 300) {
+        line = line * 0.009;
+      } else {
+        line = line * 0.01;
+      }
+      result = line.toFixed(2);
+      document.getElementById("result").innerHTML = result;
+    }
+    document.getElementById("number").addEventListener('keydown', function(e) {
+      if (e.keyCode == 13) {cal()}
+    });
+  </script>
+</body>
+
+</html>
