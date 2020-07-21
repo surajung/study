@@ -4,29 +4,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>전기요금</title>
+  <title>암호의-개수</title>
 </head>
 
 <body>
-  <p class="url">구름URL : <a href="https://level.goorm.io/exam/43268/%EC%A0%84%EA%B8%B0%EC%9A%94%EA%B8%88/quiz/1" target="_blank">전기요금</a></p>
+  <p class="url">암호의-개수 URL : <a href="https://level.goorm.io/exam/43168/암호의-개수/quiz/1" target="_blank">링크주소</a></p>
   <input type="text" name="number" id="number" value="">
-  <!-- <button type="button" onclick="cal()">ok</button> -->
   <p id="result"></p>
   <script>
     function cal() {
-      let line = document.getElementById("number").value;
-      let result;
-      // if (line <= 0) {console.log(0);rl.close();}
-      if (line < 100 || line < 0) {
-        line = line * 0.005;
-      } else if (line < 200) {
-        line = line * 0.007;
-      } else if (line < 300) {
-        line = line * 0.009;
+      let result,
+          line = document.getElementById("number").value;
+      const raw = line.split(" "),
+        min = raw[0],
+        max = raw[1],
+        count = raw[2];
+      result = 0;
+      if ((1 <= min <= 8) && (1 <= max <= 8) && (1 <= count <= 10)) {
+        for (let i = min; i <= max; i++) {
+          result = result + (count ** i);
+        }
+        console.log(result);
       } else {
-        line = line * 0.01;
+        console.log('범위에서 벗어난 입력');
       }
-      result = line.toFixed(2);
+
       document.getElementById("result").innerHTML = result;
     }
     document.getElementById("number").addEventListener('keydown', function(e) {
