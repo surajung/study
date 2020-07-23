@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>숫자 뒤집기</title>
+</head>
+
+<body>
+  <p class="url">숫자 뒤집기 : <a href="https://level.goorm.io/exam/43142/%EC%88%AB%EC%9E%90-%EB%92%A4%EC%A7%91%EA%B8%B0/quiz/1"
+      target="_blank">문제링크</a></p>
+  <input type="text" name="number" id="inputValue" value="">
+  <!-- <button type="button" onclick="cal()">ok</button> -->
+  <p id="outputValue"></p>
+  <script>
+    function cal() {
+      let line = document.getElementById("inputValue").value;
+
+      // 코드 시작
+      let result;
+      let lineArray = line.split("").reverse();
+      for (let i = 0; i <= lineArray.length; i++) {
+        // console.log(i, lineArray);
+        if (lineArray[0] == "0") {
+          lineArray.splice(0, 1)
+        }
+      }
+      result = Number(lineArray.join(""));
+      // 코드 끝
+
+      document.getElementById("outputValue").innerHTML = result;
+    }
+    document.getElementById("inputValue").addEventListener('keydown', function (e) {
+      if (e.keyCode == 13) { cal() }
+    });
+  </script>
+</body>
+
+</html>
