@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가운데 글자 가져오기</title>
+</head>
+
+<body>
+  <form action="" onsubmit="return calc();return false">
+    <p class="url">
+      가운데 글자 가져오기 : <a href="https://programmers.co.kr/learn/courses/30/lessons/12903" target="_blank">문제링크</a>
+    </p>
+    <input type="text" name="number" id="inputValue" value="">
+    <button type="submit">확인</button>
+  </form>
+  <p id="outputValue"></p>
+  <script>
+    function solution(s) {
+      let answer = '';
+      let raw = s.split("");
+      let rawSize = raw.length;
+      let rawSizeHalf = rawSize / 2;
+      if (rawSize % 2 == 0) {
+        answer = raw[rawSizeHalf - 1] + raw[rawSizeHalf];
+      } else {
+        answer = raw[Math.ceil(rawSizeHalf) - 1];
+      }
+      return answer;
+      // return s.substr(Math.ceil(s.length / 2) - 1, s.length % 2 === 0 ? 2 : 1);
+      /**        
+        s 문자열 가운데 문자(개수를 반으로 나눠서 올림)부터 출력하는데 개수가 짝수면 2개, 홀수면 1개 반환
+        substr()은 Deprecated 처리됨.
+          https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr        
+      */
+      // return s.substring(Math.ceil(s.length / 2) - 1, s.length % 2 === 0 ? Math.ceil(s.length / 2) + 1 : Math.ceil(s.length / 2));
+    }
+    function calc() {
+      let line = document.getElementById("inputValue").value;
+      document.getElementById("outputValue").innerHTML = solution(line);
+      return false;
+    }
+  </script>
+</body>
+
+</html>
