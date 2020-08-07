@@ -21,35 +21,33 @@
       let answer = [];
       let answers = asd.split(",");
       let result = [0,0,0];
-      // let man1 = 0;  //1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...
-      // let man2 = 0;  //2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, ...
-      // let man3 = 0;  //3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ...
-      let man1Type, man2Type, man3Type, a = 0, b = 0, c=3;
+      let man1Pattern, man2Pattern, man3Pattern, a = 0, b = 0, c=3;
 
       for (let i = 1; i <= answers.length; i++) {
-        // man1 pattern 구하기
+        // man1 pattern 구하기 >> 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...
         if (i % 5 == 0) {
-          man1Type = 5;
+          man1Pattern = 5;
           a = 0;
         } else {
           a++;
-          man1Type = a;
+          man1Pattern = a;
         }
-        // man2 pattern 구하기
+        // man2 pattern 구하기 >> 2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, ...
         if (i % 2 == 0) {
           // 1~5까지 돌면서 2를 제외하는 로직
           (b >= 5) ? b = 1 : b++;  // 5이상이면 1로 반환
           if (b == 2) {  // 2일 경우 3으로 반환
-            man2Type = 3
+            man2Pattern = 3
             b = 3;
           } else {
-            man2Type = b;
+            man2Pattern = b;
           }
         } else {
-          man2Type = 2;
+          man2Pattern = 2;
         }
+        // man3 pattern 구하기 >> 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ...
         if (i % 2 == 0) {
-          man3Type = c;
+          man3Pattern = c;
           if (c == 3) {
             c=1;
           } else if (c == 2) {
@@ -60,12 +58,12 @@
             c++;
           }
         } else {
-          man3Type = c;
+          man3Pattern = c;
         }
 
-        if (answers[i - 1] == man1Type) result[0]++;
-        if (answers[i - 1] == man2Type) result[1]++;
-        if (answers[i - 1] == man3Type) result[2]++;
+        if (answers[i - 1] == man1Pattern) result[0]++;
+        if (answers[i - 1] == man2Pattern) result[1]++;
+        if (answers[i - 1] == man3Pattern) result[2]++;
       }
       let max = result.reduce(function(a, b) {
         return Math.max(a,b);
