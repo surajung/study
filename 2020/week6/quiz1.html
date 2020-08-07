@@ -18,11 +18,12 @@
   <p id="outputValue"></p>
   <script>
     function solution(asd) {
+      let answer = [];
       let answers = asd.split(",");
-      let answer = [1,2,3];
-      let man1 = 0;  //1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...
-      let man2 = 0;  //2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, ...
-      let man3 = 0;  //3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ...
+      let result = [0,0,0];
+      // let man1 = 0;  //1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...
+      // let man2 = 0;  //2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, ...
+      // let man3 = 0;  //3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ...
       let man1Type, man2Type, man3Type, a = 0, b = 0, c=3;
 
       for (let i = 1; i <= answers.length; i++) {
@@ -62,23 +63,16 @@
           man3Type = c;
         }
 
-        (answers[i-1] == man1Type) ? man1++ : man1 ;
-        (answers[i-1] == man2Type) ? man2++ : man2 ;
-        (answers[i-1] == man3Type) ? man3++ : man3 ;
+        if (answers[i - 1] == man1Type) result[0]++;
+        if (answers[i - 1] == man2Type) result[1]++;
+        if (answers[i - 1] == man3Type) result[2]++;
       }
-      console.log(man1, man2, man3);
-      if (man1 == man2 && man2 == man3) {
-        answer = [1,2,3]
-      } else {
-        if (man1 < man2) {
-          answer.splice(0,1);
-          (man2 < man3) ? answer.splice(0, 1) : answer.splice(1, 1);
-        } else {
-          answer.splice(1, 1);
-          (man1.answer < man3.answer) ? answer.splice(0, 1) : answer.splice(1, 1);
-        }
-      }
-      console.log(answer);
+      let max = result.reduce(function(a, b) {
+        return Math.max(a,b);
+      });
+      if (max == result[0]) answer.push(1);
+      if (max == result[1]) answer.push(2);
+      if (max == result[2]) answer.push(3);
       return answer;
     }
     // solution();
