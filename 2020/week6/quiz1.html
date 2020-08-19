@@ -24,7 +24,14 @@
 
       for (let i = 1; i <= answers.length; i++) {
         // man1 pattern 구하기 >> 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...
-        man1Pattern = i % 5;
+        // man1Pattern = i % 5;
+        if (i % 5 == 0) {
+          man1Pattern = 5;
+          a = 0;
+        } else {
+          a++;
+          man1Pattern = a;
+        }
         // man2 pattern 구하기 >> 2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, ...
         if (i % 2 == 0) {
           // 1~5까지 돌면서 2를 제외하는 로직
@@ -58,6 +65,7 @@
         if (answers[i - 1] == man2Pattern) result[1]++;
         if (answers[i - 1] == man3Pattern) result[2]++;
       }
+      console.log(answer)
       let max = result.reduce(function (a, b) {
         return Math.max(a, b);
       });
