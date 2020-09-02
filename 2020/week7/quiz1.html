@@ -10,7 +10,7 @@
 <body>
   <form action="" onsubmit="return calc();return false">
     <p class="url">
-      모의고사 : <a href="https://programmers.co.kr/learn/courses/30/lessons/42840?language=javascript" target="_blank">모의고사</a>
+      체육복 : <a href="https://programmers.co.kr/learn/courses/30/lessons/42862?language=javascript" target="_blank">문제링크</a>
     </p>
     <input type="text" name="number" id="inputValue" value="">
     <button type="submit">확인</button>
@@ -25,12 +25,8 @@
           reserveArr = reserve.sort((a, b) => a - b),
           overlapArr = new Array();
 
-      // lost와 reserve의 중복값 생성;
-      lostArr.forEach((n) => {
-        if (reserveArr.includes(n)) {
-          overlapArr.push(n);
-        }
-      });
+      // lost와 reserve의 중복값 생성
+      overlapArr = lostArr.filter((val) => reserveArr.indexOf(val) !== -1);
 
       // 중복된 값을 각각의 배열에서 제거
       lostArr = lostArr.filter((val) => overlapArr.indexOf(val) == -1);
