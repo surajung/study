@@ -20,30 +20,34 @@
     function solution(n) {
       let lost = [2, 3, 4]
           reserve = [1, 2, 3, 6];
-      let answer = n;
-      let overlapArr = new Array();
+      var answer = '';
 
-      // lost와 reserve의 중복값 생성
-      overlapArr = lost.filter((val) => reserve.indexOf(val) !== -1);
+      // 전체학생수
+      var persons = n;
 
-      // 중복된 값을 각각의 배열에서 제거
-      lost = lost.filter((val) => overlapArr.indexOf(val) == -1);
-      reserve = reserve.filter((val) => overlapArr.indexOf(val) == -1);
+      // 도난당한 학생 오름차순 (여벌을 가지고 있는 도난당한 학생은 제외)
+      var lostPersons = lost.filter(v => {
+        return reserve.indexOf(v) === -1
+      }).sort(function (a, b) { return a - b });
 
-      // 오름차순으로 정렬
-      lost.sort((a, b) => a - b);
-      reserve.sort((a, b) => a - b);
+      // 여벌보유 학생 오름차순 (여벌을 가지고 있는 도난당한 학생은 제외)
+      var reservePersons = reserve.filter(v => {
+        return lost.indexOf(v) === -1
+      }).sort(function (a, b) { return a - b });
 
-      lost.forEach(function (i) {
-        let reserveIndex = reserve.indexOf(i);
-        if (reserve.includes(i - 1) && i !== 1) {
-          reserve.splice(reserveIndex - 1, 1);
-        } else if (reserve.includes(i + 1)) {
-          reserve.splice(reserveIndex + 1, 1);
-        } else {
-          answer--;
+      // 체육을 다시 하게된 도난당한 학생
+      var findPersons = [];
+      for (let i = 0; i < reservePersons.length; i++) {
+        for (let j = 0; j < lostPersons.length; j++) {
+          if (lostPersons[j] === (reservePersons[i] - 1) || lostPersons[j] === (reservePersons[i] + 1)) {
+            findPersons.push(lostPersons[j]);
+            lostPersons[j] = '';
+            break;
+          }
         }
-      });
+      }
+      // 최종 전체 학생에서 잃어버린학생(두벌을 가진 학생 제외)을 빼고 다시 찾은(빌린)학생을 더한다.
+      answer = (persons - lostPersons.length) + findPersons.length;
       return answer;
     }
     
