@@ -20,13 +20,15 @@
     function solution(n) {
       let limit = 120,
         people = [70, 50, 80, 50]
-      people.sort((a, b) => b - a);
+      people.sort((a, b) => b - a);  //  50,50,70,80
       let answer = 0;
-      let count = 0;
+      let start = 0,
+        end = people.length - 1;
       let persons = people.length;
       while (persons !== 0) {
-        if (people[count] + people[people.length - 1] <= limit) {
-          people.pop();
+        console.log(people[start], people[end]);
+        if (people[start] + people[end] <= limit) {
+          end--;
           persons--;
           answer++;
         } else {
@@ -34,9 +36,13 @@
         }
         persons--;
         if (persons <= 0) { persons = 0}
-        count++;
+        start++;
+        console.log(answer);
       }
       return answer;
+      // 80 + 50, 50
+      // 70 + 50, 70&50
+      // 50 + 50, 50
     }
     
     solution();
