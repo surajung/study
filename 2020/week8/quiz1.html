@@ -18,25 +18,24 @@
   <p id="outputValue"></p>
   <script>
     function solution(n) {
-      let limit = 100,
-        people = [70, 80, 50]
+      let limit = 120,
+        people = [70, 50, 80, 50]
       people.sort((a, b) => b - a);
       let answer = 0;
       let count = 0;
-      while (people.length !== 0) {
-        // console.log(count);
-        if (people[0] + people[people.length - 1] <= limit) {
+      let persons = people.length;
+      while (persons !== 0) {
+        if (people[count] + people[people.length - 1] <= limit) {
           people.pop();
-          people.shift();
+          persons--;
           answer++;
         } else {
-          people.shift();
           answer++;
         }
+        persons--;
+        if (persons <= 0) { persons = 0}
+        count++;
       }
-      // 50+80 > 100; 2
-      // 50+70 > 100; 1
-      console.log(answer);
       return answer;
     }
     
