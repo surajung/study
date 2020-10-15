@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2017 팁스타운 > 예상 대진표</title>
+</head>
+
+<body>
+  <form action="" onsubmit="return calc();return false">
+    <p class="url">
+      2017 팁스타운 > 예상 대진표 : <a href="https://programmers.co.kr/learn/courses/30/lessons/12985?language=javascript" target="_blank">문제링크</a>
+    </p>
+    <input type="text" name="number" id="inputValue" value="">
+    <button type="submit">확인</button>
+  </form>
+  <p id="outputValue"></p>
+  <script>
+    var triangle = [[7], [3, 8], [8, 1, 0], [2, 7, 4, 4], [4, 5, 2, 6, 5]];
+    function solution(triangle) {
+        for (var i = triangle.length - 1; i > 0; i--) {
+          for (var j = 0; j < triangle[i - 1].length; j++) {
+            // i=3, j=0
+            // console.log(i,j);
+            // triangle[3][0] += Math.max(triangle[4][0], triangle[4][1])
+            triangle[i - 1][j] += Math.max(triangle[i][j], triangle[i][j + 1]);
+          }
+        }
+        // console.log(triangle[0][0]);
+        return triangle[0][0];
+    }
+    console.log(solution(triangle));
+    function calc() {
+      let line = document.getElementById("inputValue").value;
+      document.getElementById("outputValue").innerHTML = solution(line);
+      return false;
+    }
+  </script>
+</body>
+
+</html>
