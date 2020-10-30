@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>줄 서는 방법</title>
+</head>
+
+<body>
+  <form action="" onsubmit="return calc();return false">
+    <p class="url">
+      줄 서는 방법 : <a href="https://programmers.co.kr/learn/courses/30/lessons/12936?language=javascript" target="_blank">문제링크</a>
+    </p>
+  </form>
+  <script>
+    var n = 5,
+        k = 20;
+    function solution(n, k) {
+        var answer = new Array();
+        var arrNumber = new Array();
+        var exam = new Array();
+        for (var n1 = 1; n1 <= n; n1++) {
+          exam[n1-1] = n1;
+        }
+        var size = n - 2;
+        // 자릿수별 카운팅 구하는 함수
+        for (var i = 0; i < size; i++) {
+          arrNumber[i] = 1;
+          for (j = i; j >= 0; j--) {
+            arrNumber[j] = arrNumber[j] * (n - i - 1);
+          }
+        }
+        // console.log(arrNumber);
+
+        // 배열 구하기
+        for (var j = 0; j < n-1; j++) {
+          console.log(j+1, answer, exam);
+          // answer[j] = 0;
+          if (j !== n - 2) {
+            var bcd = Math.ceil(k / arrNumber[j]);
+            console.log(bcd,j0);
+            // if (bcd > j) {
+            //   bcd = bcd % (j+1);
+            // }
+            var abc = exam.splice(bcd - 1, 1);
+            answer[j] = abc[0];
+            console.log(abc[0] + '을 담기, '+ answer);
+          } else {
+            console.log('나머지');
+            var examLastValue = exam.length - 1;
+            if (k % 2 == 0) {
+              answer[n - 2] = exam[examLastValue - 1];
+              answer[n - 1] = exam[examLastValue];
+            } else {
+              answer[n - 1] = exam[examLastValue - 1];
+              answer[n - 2] = exam[examLastValue];
+            }
+          }
+          // console.log(answer , exam);
+        }
+        return answer;
+      }
+      console.log(solution(n, k));
+    function calc() {
+      let line = document.getElementById("inputValue").value;
+      document.getElementById("outputValue").innerHTML = solution(line);
+      return false;
+    }
+  </script>
+</body>
+
+</html>
