@@ -14,34 +14,33 @@
     </p>
   </form>
   <script>
-    var s = "abacde";
+    var s = "abaabaaaaaaa";
     function solution(s) {
-      let answer = 0;
+      let answer = new Array();
       let stringCountValue = s.length; // 7
-      let j;
-      // console.log(stringCountValue);
-      // let a = s.substring(5, 6);
-      // console.log(a, s);
-      for (let i = 0; i < stringCountValue-1; i++) {
-        console.log(i);
-        for (j = stringCountValue-1; j > i; j--) {
-          console.log(i, j, s.substring(i, i + 1), s.substring(j, j+1));
-          if (s.substring(i, i+1) === s.substring(j, j+1)) {
-            i++;
-            answer++;
-            answer++;
+
+      function palindrome(line) {
+        let lineArray = line.split("");
+        let lineArrayReverse = line.split("").reverse();
+        console.log(lineArray, lineArrayReverse);
+        for (let i = 0; i <= (lineArray.length / 2); i++) {
+          if (lineArray[i] !== lineArrayReverse[i]) {
+            return 0;
           }
         }
-        if (i !== j) {
-          console.log("같다");
-          break;
-        } else {
-          console.log("다르다");
-          answer++;
-          break;
+        return line.length;
+      }
+      
+      for (let i = 0; i < stringCountValue; i++) {
+        for (let j = stringCountValue; j > i; j--) {
+          let value = palindrome(s.substring(i,j));
+          if (value !== 0) {
+            answer.push(value);
+          }
         }
       }
-      return answer;
+
+      return Math.max(...answer);
     }
     console.log(solution(s));
   </script>
