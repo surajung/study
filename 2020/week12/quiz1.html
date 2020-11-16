@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가장 긴 팰린드롬</title>
+</head>
+
+<body>
+  <form action="" onsubmit="return calc();return false">
+    <p class="url">
+      가장 긴 팰린드롬 : <a href="https://programmers.co.kr/learn/courses/30/lessons/12904?language=javascript" target="_blank">문제링크</a>
+    </p>
+  </form>
+  <script>
+    var s = "abacde";
+    function solution(s) {
+      let answer = 0;
+      let stringCountValue = s.length; // 7
+      let j;
+      // console.log(stringCountValue);
+      // let a = s.substring(5, 6);
+      // console.log(a, s);
+      for (let i = 0; i < stringCountValue-1; i++) {
+        console.log(i);
+        for (j = stringCountValue-1; j > i; j--) {
+          console.log(i, j, s.substring(i, i + 1), s.substring(j, j+1));
+          if (s.substring(i, i+1) === s.substring(j, j+1)) {
+            i++;
+            answer++;
+            answer++;
+          }
+        }
+        if (i !== j) {
+          console.log("같다");
+          break;
+        } else {
+          console.log("다르다");
+          answer++;
+          break;
+        }
+      }
+      return answer;
+    }
+    console.log(solution(s));
+  </script>
+</body>
+
+</html>
