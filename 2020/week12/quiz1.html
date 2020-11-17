@@ -17,24 +17,23 @@
     var s = "abaabaaaaaaa";
     function solution(s) {
       let answer = new Array();
-      let stringCountValue = s.length; // 7
-
-      function palindrome(line) {
-        let lineArray = line.split("");
-        let lineArrayReverse = line.split("").reverse();
-        console.log(lineArray, lineArrayReverse);
-        for (let i = 0; i <= (lineArray.length / 2); i++) {
-          if (lineArray[i] !== lineArrayReverse[i]) {
-            return 0;
+      let stringSize = s.length;
+      function palindrome(stringValue) {
+        let str = stringValue.length;
+        for (let i = 0; i < str / 2; i++) {
+          if (stringValue.substring(0,1) == stringValue.substring(stringValue.length - 1, stringValue.length)) {
+            stringValue = stringValue.substring(1, stringValue.length - 1);
+          } else {
+            return false;
           }
         }
-        return line.length;
+        return str;
       }
       
-      for (let i = 0; i < stringCountValue; i++) {
-        for (let j = stringCountValue; j > i; j--) {
+      for (let i = 0; i < stringSize; i++) {
+        for (let j = stringSize; j > i; j--) {
           let value = palindrome(s.substring(i,j));
-          if (value !== 0) {
+          if (value) {
             answer.push(value);
           }
         }
