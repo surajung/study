@@ -17,23 +17,23 @@
     var s = "abaabaaaaaaa";
     function solution(s) {
         let answer = new Array();
-        let stringSize = s.length;
-        function palindrome(val) {
-          let strSize = val.length;
-          let stringValue = val;
-          for (let i = 0; i < strSize / 2; i++) {
-            if (stringValue.substring(0, 1) == stringValue.substring(stringValue.length - 1, stringValue.length)) {
-              stringValue = stringValue.substring(1, stringValue.length - 1);
+        let strOriginSize = s.length;
+
+        function palindrome(value) {
+          let strCustomValue = value,
+              strCustomSize = strCustomValue.length;
+          for (let i = 0; i < strCustomSize / 2; i++) {
+            if (strCustomValue.substring(0, 1) == strCustomValue.substring(strCustomValue.length - 1, strCustomValue.length)) {
+              strCustomValue = strCustomValue.substring(1, strCustomValue.length - 1);
             } else {
               return false;
             }
           }
-          return strSize;
+          return strCustomSize;
         }
 
-        for (let i = 0; i < stringSize; i++) {
-          for (let j = stringSize; j > i; j--) {
-            console.log(s.substring(i, j));
+        for (let i = 0; i < strOriginSize; i++) {
+          for (let j = strOriginSize; j > i; j--) {
             let value = palindrome(s.substring(i, j));
             if (value) {
               answer.push(value);
