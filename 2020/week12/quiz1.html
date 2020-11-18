@@ -17,31 +17,31 @@
     var s = "abaabaaaaaaa";
     function solution(s) {
         let answer = new Array();
-        let strOriginSize = s.length;
+        let strOriginSize = s.length;  // 주어진 문자열의 개수
 
         function palindrome(value) {
-          let strCustomValue = value,
-              strCustomSize = strCustomValue.length;
-          for (let i = 0; i < strCustomSize / 2; i++) {
-            if (strCustomValue.substring(0, 1) == strCustomValue.substring(strCustomValue.length - 1, strCustomValue.length)) {
-              strCustomValue = strCustomValue.substring(1, strCustomValue.length - 1);
+          let strCustomValue = value,  // 가공된 문자열을 캐싱, 아래 반복문에서도 계속 사용
+              strCustomSize = strCustomValue.length;  // 팰린드롬을 체크하기 전 문자열의 개수 캐싱
+          for (let i = 0; i < strCustomSize / 2; i++) {  // 팰린드롬을 체크하기 위해 퀴즈4회자 반복문을 차용
+            if (strCustomValue.substring(0, 1) == strCustomValue.substring(strCustomValue.length - 1, strCustomValue.length)) {  // 문자열 양 끝을 비교하여 같다면
+              strCustomValue = strCustomValue.substring(1, strCustomValue.length - 1);  // 참이면 다음 반복문을 위해 양 끝의 문자열을 삭제
             } else {
-              return false;
+              return false;  // 거짓이면 팰린드롬 함수는 false를 반환
             }
           }
-          return strCustomSize;
+          return strCustomSize;  // 팰린드롬이 맞다면 문자열 개수 반환
         }
 
-        for (let i = 0; i < strOriginSize; i++) {
-          for (let j = strOriginSize; j > i; j--) {
-            let value = palindrome(s.substring(i, j));
-            if (value) {
-              answer.push(value);
-              break;
+        for (let i = 0; i < strOriginSize; i++) {  // 문자열 원본을 구간별로 쪼개기 위한 반복문
+          for (let j = strOriginSize; j > i; j--) {  // 구간별로 쪼갠 문자열을 하나씩 줄이기 위한 반복문
+            let value = palindrome(s.substring(i, j));  // 가공한 문자열이 팰린드롬인지 체크
+            if (value) {  // 팰린드롬이 참이면
+              answer.push(value);  // 팰린드롬의 개수를 anwer 배열에 추가
+              break;  // 해당구간에서 팰린드롬을 찾았기 때문에 해당구간의 반복문 중지
             }
           }
         }
-        return Math.max(...answer);
+        return Math.max(...answer);  // 최대값을 반환
       }
     console.log(solution(s));
   </script>
