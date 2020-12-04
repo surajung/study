@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>타일 채우기</title>
+</head>
+
+<body>
+  <form action="" onsubmit="return calc();return false">
+    <p class="url">
+      타일 채우기 : <a href="https://level.goorm.io/exam/43165/%ED%83%80%EC%9D%BC-%EC%B1%84%EC%9A%B0%EA%B8%B0/quiz/1" target="_blank">문제링크</a>
+    </p>
+  </form>
+  <script>
+    // 경우의수 : 1,3,5,11,21
+    var line = "8 100";
+    function solution(line) {
+      let lineArray = line.split(" "),
+        line1 = Number(lineArray[0]),
+        line2 = Number(lineArray[1]),
+        value,
+        result;
+      function calc(n) {
+        if (n % 2) {
+          value = result * 2 - 1;
+        } else {
+          value = result * 2 + 1;
+        }
+        return value;
+      }
+      for (let i = 1; i <= line1; i++) {
+        if (i > 1) {
+          result = calc(i);
+        } else {
+          result = 1;
+        }
+      }
+      console.log(result % line2);
+    }
+    solution(line);
+  </script>
+</body>
+
+</html>
