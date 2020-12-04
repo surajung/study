@@ -20,16 +20,17 @@
       let lineArray = line.split(" "),
         line1 = Number(lineArray[0]),
         line2 = Number(lineArray[1]),
-        value,
         result;
+      // 경우의수를 구하기 위한 계산식
       function calc(n) {
         if (n % 2) {
-          value = result * 2 - 1;
+          result = result * 2 - 1;
         } else {
-          value = result * 2 + 1;
+          result = result * 2 + 1;
         }
-        return value;
+        return result;
       }
+      // 최종 경우의수를 구하려면 n=1부터 계산을 해야 그 결과를 참조해서 다음 경우의수를 계산할 수 있음. 그렇기에 for문
       for (let i = 1; i <= line1; i++) {
         if (i > 1) {
           result = calc(i);
