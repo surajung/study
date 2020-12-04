@@ -28,12 +28,12 @@
         } else {
           result = (result * 2 + 1) % line2;
         }
-        return result;
+        // return result;
       }
       // 최종 경우의수를 구하려면 n=1부터 계산을 해야 그 결과를 참조해서 다음 경우의수를 계산할 수 있음. 그렇기에 for문
       for (let i = 1; i <= line1; i++) {
         if (i > 1) {
-          result = calc(i);
+          calc(i);
         } else {
           result = 1;
         }
