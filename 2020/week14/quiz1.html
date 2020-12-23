@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>멀티탭 스케쥴</title>
+</head>
+
+<body>
+  <form action="" onsubmit="return calc();return false">
+    <p class="url">
+      멀티탭 스케쥴 : <a href="https://level.goorm.io/exam/49912/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EC%96%B4%EB%A1%9C%EC%A6%88-%EC%85%80%ED%94%84%EB%A0%88%EB%B2%A8%ED%85%8C%EC%8A%A4%ED%8A%B8-1%EC%B0%A8/quiz/4" target="_blank">문제링크</a>
+    </p>
+  </form>
+  <script>
+    var line1 = "3 6";
+    var line2 = "1 2 3 4 1 2";
+    function solution(line1, line2) {
+      let line1Arr = line1.split(" ");
+      let line2Arr = line2.split(" ");
+      let total = line2Arr.length;
+      let multiValue = 0;
+      let multiStatus = [];
+      let result = 0;
+      for (let i = 0; i < total; i++) {
+        console.log("현재 : " + line2Arr[0], );
+        if (multiValue < line1Arr[0]) { // 멀티탭에 여유가 있을때
+          // console.log(i);
+          multiStatus.push(line2Arr[0]); // 전자용품 체결
+          line2Arr.shift();  // 전자용품 후보군에서 해당용품 삭제
+          multiValue++;
+        } else { // 멀티탭이 꽉 찼을때
+          // console.log(line2Arr[0],multiStatus);
+          let result1 = multiStatus.some(x => { // 사용하려는 전자제품과 사용중인 전자제품에 동일한게 있는지 체크
+            // console.log(x, line2Arr[0]);
+            return x == line2Arr[0]
+          });
+          if (result1) { // 참이면 그대로 사용
+            line2Arr.shift();
+          } else { // 거짓, 동일한게 없을때
+            for (let j = 0; j < multiStatus.length; j++) {
+              console.log("동일한게 없을때 : j=" + j, line2Arr);
+              let result2 = line2Arr.every(x => {  // 제일 나중에 사용할 전자제품이 사용중인 제품중에 있는지 확인
+                console.log(x, multiStatus[j]);
+                return x !== multiStatus[j]
+              });
+              if (result2) { // 거짓이면 해당 제품 해제
+                console.log('true');
+                multiStatus.splice(j, 1);
+                // multiStatus.splice(multiStatus.indexOf(line2Arr[j]), 1);
+                multiStatus.push(line2Arr[0]);
+                line2Arr.shift();  // 전자용품 후보군에서 해당용품 삭제
+                multiValue++;
+                break;
+              } else {
+                console.log('false');
+              }
+            }
+            result++;
+          }
+        }
+        console.log(multiStatus, line2Arr, result);
+      }
+    }
+    solution(line1, line2);
+  </script>
+</body>
+
+</html>
