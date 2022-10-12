@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배열-합치기</title>
+</head>
+
+<body>
+  <p class="url">배열-합치기 : <a href="https://level.goorm.io/exam/43250/배열-합치기/quiz/1"
+      target="_blank">문제링크</a></p>
+  <script>
+    function cal(line) {
+      // 코드 시작
+      let lineArray = line.split(" ");
+      const H = Number(lineArray[0]),
+          U = Number(lineArray[1]),
+          D = Number(lineArray[2]),
+          F = Number(lineArray[3]),
+          U2 = Number((U * (F / 100)).toFixed(2));
+      let result = U;
+      console.log(H,U,D,F, result);
+      for (let i = 1; i < H; i++) {
+        if (result >= H) {
+          console.log("Success " + i);
+          break;
+        } else {
+          result = result - D + U - U2 * i;
+        }
+        if (U - U2 * i <= 0) {
+          console.log("Failure " + (i+1));
+          break;
+        }
+      }
+      // 코드 끝
+    }
+    cal("10 9 5 50");
+  </script>
+</body>
+
+</html>
